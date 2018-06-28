@@ -1,0 +1,68 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 27
+    flavorDimensions "mode"
+
+    defaultConfig {
+        applicationId "com.lasselindh.flavorsample"
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res']
+        }
+        aaaa {
+            res.srcDirs = ['src/myfolder/aaaa/res']
+        }
+        bbbb {
+            res.srcDirs = ['src/myfolder/bbbb/res']
+        }
+    }
+
+    productFlavors {
+        aaaa {
+            dimension "mode"
+            applicationId "com.lasselindh.aaaa"
+            versionCode 101
+            versionName "1.0.1"
+            buildConfigField "String", "LASSELINDH", "\"AAAA\""
+            buildConfigField "boolean", "isTrue", "true"
+            buildConfigField "int", "Type", "0"
+        }
+
+        bbbb {
+            dimension "mode"
+            applicationId "com.lasselindh.bbbb"
+            versionCode 102
+            versionName "1.0.2"
+            buildConfigField "String", "LASSELINDH", "\"BBBB\""
+            buildConfigField "boolean", "isTrue", "true"
+            buildConfigField "int", "Type", "1"
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:support-vector-drawable:27.1.1'
+}
